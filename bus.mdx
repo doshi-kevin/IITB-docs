@@ -1,0 +1,37 @@
+---
+title: "Data Request Actions"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const busSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    busName: {
+      type: String,
+      required: true,
+    },
+    nominalKV: {
+      type: String,
+      required: true,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+
+The busSchema outlines the structure for documents in a MongoDB collection, likely storing data about buses. It mandates fields like id, busName, and nominalKV (representing unique ID, bus name, and kVA rating respectively). The schema allows for additional flexible fields (additionalFields) and enables change stream pre and post images for real-time data tracking.

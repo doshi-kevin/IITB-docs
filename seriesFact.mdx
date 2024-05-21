@@ -1,0 +1,28 @@
+---
+title: "Data Request Actions"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const seriesFactsSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+This script defines a Mongoose schema for representing series facts in a database, storing additional custom fields for each series fact entry. It enables change stream monitoring for real-time updates. The model exported as SeriesFact facilitates CRUD operations on the MongoDB collection, allowing interaction with series fact data.

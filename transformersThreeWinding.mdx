@@ -1,0 +1,102 @@
+---
+title: "Data Request Actions"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+
+const transformersThreeWindingSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    deviceName: {
+      type: String,
+    },
+    busprimaryFrom: {
+      type: String,
+    },
+    busprimarySectionFrom: {
+      type: String,
+    },
+    bussecondaryTo: {
+      type: String,
+    },
+    busSectionSecondaryTo: {
+      type: String,
+    },
+    bustertiaryTo: {
+      type: String,
+    },
+    busSectionTertiaryTo: {
+      type: String,
+    },
+    mva: {
+      type: String,
+    },
+    kvprimaryVoltage: {
+      type: String,
+    },
+    kvsecondaryVoltage: {
+      type: String,
+    },
+    kvtertiaryVoltage: {
+      type: String,
+    },
+    psprimarysecondary: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+    ptprimarytertiary: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+    stsecondarytertiary: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+    TapPrimary: {
+      type: String,
+    },
+    TapSecondary: {
+      type: String,
+    },
+    TapTertiary: {
+      type: String,
+    },
+    primaryConnection: {
+      type: String,
+    },
+    primaryConnectionGrounding: {
+      type: String,
+    },
+    secondaryConnection: {
+      type: String,
+    },
+    secondaryConnectionGrounding: {
+      type: String,
+    },
+    tertiaryConnection: {
+      type: String,
+    },
+    tertiaryConnectionGrounding: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+
+```
+This code defines a Mongoose schema for storing information about three-winding transformers. Each document in the collection represents a transformer and includes fields such as ID, deviceName, bus connections for primary, secondary, and tertiary windings, ratings (MVA and kV), tap settings, winding connections, and additional custom fields. The schema is configured to enable change stream monitoring for real-time updates. The exported model, TransformersThreeWinding, allows interaction with the MongoDB collection for CRUD operations on transformer data.

@@ -1,0 +1,35 @@
+---
+title: "Data Request Actions"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+
+```tsx:deletedDataRequest
+
+const requestSchema = new Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+This JavaScript code defines a Mongoose schema named requestSchema for representing requests in a MongoDB database. Each request has fields for user, message, and date. Additionally, it sets up collection options to enable real-time change stream monitoring. The code exports a Mongoose model named Requests based on the defined schema, allowing for interaction with the MongoDB collection representing requests. If the model Requests already exists, it uses the existing model; otherwise, it creates a new one.
