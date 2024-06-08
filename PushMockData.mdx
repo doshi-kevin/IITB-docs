@@ -1,0 +1,58 @@
+---
+title: "Push Mock Data"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const PushMockData = ({ mockData, session, columns }: { mockData: any; session: any; columns: IColumn[] }) => {
+  const [done, setDone] = useState(false);
+
+  const pushMockData = () => {
+    mockData.forEach(async (data: any) => {
+      const defaultFields: any = {};
+      const additionalFields: any = {};
+      columns.map((item) => {
+        if (item.isDefault) {
+          if (item.type === "subColumns") {
+            const temp: any = {};
+            item.subColumns!.map((subItem) => {
+              temp[subItem.field] = data[subItem.field];
+            });
+            defaultFields[item.field] = temp;
+          } else defaultFields[item.field] = data[item.field];
+        } else {
+          if (item.type === "subColumns") {
+            const temp: any = {};
+            item.subColumns!.map((subItem: any) => {
+              temp[subItem.field] = data[subItem.field];
+            });
+            additionalFields[item.field] = temp;
+          } else additionalFields[item.field] = data[item.field];
+        }
+      });
+      let req = {
+        defaultFields: defaultFields,
+        additionalFields: additionalFields,
+      };
+      const response = await createTransmissionLine(req, session?.user.id!);
+    });
+    setDone(true);
+  };
+
+  return (
+    <div>
+      <button onClick={pushMockData}>PushMockData</button>
+      <p>{done ? "done" : "not done"}</p>
+    </div>
+  );
+};
+
+export default PushMockData;
+
+```
+The PushMockData component is responsible for pushing mock data into the system based on provided parameters. It iterates over the mockData array and processes each item by mapping its fields to the corresponding columns. It then sends a request to create a new entry in the system using the appropriate action based on the column type. The done state indicates whether the operation is completed.
