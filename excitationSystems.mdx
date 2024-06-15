@@ -1,0 +1,57 @@
+---
+title: "Excitation systems"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const excitationSystemSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    deviceName: {
+      type: String,
+      required: true,
+    },
+    automaticVoltageRegulatorAVRType: {
+      type: String,
+      required: true,
+    },
+    generatorDeviceName: {
+      type: String,
+      required: true,
+    },
+    avrImage: {
+      type: String,
+      required: true,
+    },
+    powerSystemStabilizerPSSImage: {
+      type: String,
+      required: true,
+    },
+    underExcitationLimiterUELImage: {
+      type: String,
+      required: true,
+    },
+    overExcitationLimiterOELImage: {
+      type: String,
+      required: true,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+
+This JavaScript code defines a Mongoose schema named excitationSystemSchema to model data for an excitation system. It includes fields like deviceName, automaticVoltageRegulatorAVRType, and images for various components. The schema also allows for additional custom fields. Additionally, it sets up collection options for real-time change stream monitoring. Finally, it exports a Mongoose model called ExcitationSystem based on the defined schema for interaction with MongoDB.

@@ -1,0 +1,45 @@
+---
+title: "Load"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const loadSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    deviceName: {
+      type: String,
+    },
+    busFrom: {
+      type: String,
+    },
+    busSectionFrom: {
+      type: String,
+    },
+    pMW: {
+      type: String,
+    },
+    qMvar: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+
+```
+
+This script defines a Mongoose schema for representing loads in a power system, capturing fields such as ID, device name, power generation values (pMW and qMvar), and additional customizable fields. The schema is configured to enable change stream monitoring for real-time updates. The script exports a model named Load for database operations, facilitating CRUD (Create, Read, Update, Delete) functionalities for loads.

@@ -1,0 +1,29 @@
+---
+title: "IBR"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const ibrSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+
+This code defines a Mongoose schema called ibrSchema for an IBR (Interruptible Load) entity, primarily comprising an ID field and additional customizable fields. It supports complex attributes using Schema.Types.Mixed and enables real-time change stream monitoring. The model IBR is exported for database interactions, ensuring consistency in data handling.

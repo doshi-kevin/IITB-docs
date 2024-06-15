@@ -1,0 +1,24 @@
+---
+title: "Default Parameters"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const defaultParamSchema = new Schema(
+  {
+    busColumns: [{ field: convertField("Bus Name"), title: "Bus Name", type: "text", isDefault: true }, /* More fields */],
+    excitationSystemColumns: [{ field: convertField("Device name"), title: "Device name", type: "text", isDefault: true }, /* More fields */],
+    generatorColumns: [{ field: convertField("Device name"), title: "Device name", type: "text", isDefault: true }, /* More fields */],
+    /* Repeat for other columns */
+  },
+  { collectionOptions: { changeStreamPreAndPostImages: { enabled: true } } }
+);
+
+```
+
+This code creates a Mongoose schema called defaultParamSchema to manage different sets of columns for system components. Each column set is an array of objects defining attributes like field name, title, type, and default status. Additionally, it configures collection options for real-time change stream monitoring.

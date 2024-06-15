@@ -1,0 +1,80 @@
+---
+title: "Request Change"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const FormSchema = z.object({
+  message: z.string(),
+});
+
+const RequestChange = () => {
+  const { data: session } = useSession();
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
+
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    try {
+      const response = await createRequest({ userId: session?.user.id, message: data.message });
+      if (response?.status === 200) {
+        toast.success("Request sent successfully");
+        form.resetField("message");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Action could not be completed. Please try again");
+    }
+  };
+
+  return (
+    <div className="flex gap-5">
+      <Dialog>
+        <DialogTrigger className={buttonVariants()}>Request change</DialogTrigger>
+        <DialogContent className="bg-white">
+          <DialogHeader>
+            <DialogTitle className="font-bold text-center">Request a change</DialogTitle>
+          </DialogHeader>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8"
+            >
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Enter your message"
+                        {...field}
+                        className="focus-visible:ring-offset-0 focus-visible:ring-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <DialogClose>
+                <Button type="submit">Submit</Button>
+              </DialogClose>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+};
+
+export default RequestChange;
+
+```
+The RequestChange component sets up a dialog box for users to request changes. It includes a form with a message input field. When submitted, the message is sent to the server. If successful, a success toast notification is displayed, and the form is reset.

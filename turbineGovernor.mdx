@@ -1,0 +1,40 @@
+---
+title: "TurbineGovernor"
+description: "This file contains functions for handling CRUD operations on data requests within a server application."
+---
+
+In the <Highlight>src/lib/actions</Highlight> directory, You can find the <Highlight>dataRequest.actions.ts</Highlight>
+
+## Functions
+
+```tsx:getAllDataRequests
+
+const turbineGovernorSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    deviceName: {
+      type: String,
+    },
+    turbineType: {
+      type: String,
+    },
+    generatorDeviceName: {
+      type: String,
+    },
+    turbineModelImage: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+This script creates a Mongoose schema to represent turbine governors, typically used in power generation systems. The schema includes fields such as ID, deviceName, turbineType, generatorDeviceName, turbineModelImage, and additionalFields for custom data. It's configured to allow change stream monitoring for real-time updates. The exported model, TurbineGovernor, facilitates interaction with the MongoDB collection, enabling CRUD operations on turbine governor data.
