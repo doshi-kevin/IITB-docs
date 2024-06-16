@@ -14,24 +14,12 @@ export function Navbar() {
             className="text-lg font-bold whitespace-nowrap flex flex-row gap-2"
           >
             <Command />
-            <span className="max-[800px]:hidden">Docs/template</span>
+            <span className="max-[800px]:hidden">VoltVault Documentation</span>
           </Link>
           <div className="flex flex-row items-center gap-4 text-zinc-400">
-            <Link className="text-muted text-sm max-[800px]:hidden" href="#">
-              Pricing
-            </Link>
-            <Link className="text-muted text-sm" href="#">
-              Blog
-            </Link>
             <Anchor absolute className="text-sm" href="/docs/introduction">
               Documentation
             </Anchor>
-            <Link className="text-muted text-sm max-[800px]:hidden" href="#">
-              Templates
-            </Link>
-            <Link className="text-muted text-sm max-[800px]:hidden" href="#">
-              Help
-            </Link>
           </div>
         </div>
         <div className="flex flex-row items-center gap-2">

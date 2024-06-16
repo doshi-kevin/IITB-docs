@@ -1,0 +1,28 @@
+---
+title: "IBR Schema"
+description: ""
+---
+
+
+## Functions
+
+```tsx:ibrSchema.tsx
+
+const ibrSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+```
+
+This code defines a Mongoose schema called ibrSchema for an IBR (Interruptible Load) entity, primarily comprising an ID field and additional customizable fields. It supports complex attributes using Schema.Types.Mixed and enables real-time change stream monitoring. The model IBR is exported for database interactions, ensuring consistency in data handling.

@@ -1,0 +1,28 @@
+---
+title: "Shunt Fact Schema"
+description: ""
+---
+
+
+## Functions
+
+```tsx:shuntFactsSchema.tsx
+
+const shuntFactsSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+
+```
+This code defines a Mongoose schema for representing shunt facts in a database. It includes an ID field and allows for additional custom fields stored as mixed data types. The schema enables change stream monitoring for real-time updates. The exported model, ShuntFacts, provides an interface for CRUD operations on the MongoDB collection containing shunt facts data.

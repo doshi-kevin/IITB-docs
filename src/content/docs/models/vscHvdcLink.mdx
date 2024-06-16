@@ -1,0 +1,27 @@
+---
+title: "VSCHVDCLink Schema"
+description: ""
+---
+
+
+## Functions
+
+```tsx:getAllDataRequests
+const vscHvdcLinkSchema = new Schema(
+  {
+    id: {
+      type: String,
+    },
+    additionalFields: {
+      type: Schema.Types.Mixed,
+      default: {},
+    },
+  },
+  {
+    collectionOptions: { changeStreamPreAndPostImages: { enabled: true } },
+  }
+);
+
+
+```
+This code defines a Mongoose schema for a VSC HVDC link, including an ID field and additional fields stored as mixed data types. The schema also enables change stream monitoring for real-time updates. The model, VSCHVDCLink, allows interaction with the MongoDB collection, facilitating CRUD operations on VSC HVDC link data.
